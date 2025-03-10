@@ -124,11 +124,11 @@ def main():
             
         try:
             result = rag.query(question)
-            print(result)
+            # print(result)
             print("\nAnswer:", result["answer"])
-            print("\nSources:")
-            for i, doc in enumerate(result["source_documents"], 1):
-                print(f"{i}. {doc.metadata.get('source', 'Unknown source')}")
+            # print("\nSources:")
+            # for i, doc in enumerate(result["source_documents"], 1):
+            #     print(f"{i}. {doc.metadata.get('source', 'Unknown source')}")
         except Exception as e:
             print(f"Error: {str(e)}")
 
