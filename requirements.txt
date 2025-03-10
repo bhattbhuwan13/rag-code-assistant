@@ -1,0 +1,11 @@
+langchain
+langchain-community
+langchain-core
+python-dotenv
+chromadb
+openai
+tiktoken
+unstructured
+python-magic
+pdf2image
+langchain-openai
