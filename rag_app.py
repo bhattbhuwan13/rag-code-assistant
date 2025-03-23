@@ -27,7 +27,7 @@ class RAGApplication:
         # Create loaders for Python and Markdown files
         python_loader = DirectoryLoader(
             self.directory_path,
-            glob="**/*.py",  # Load Python files
+            glob="*/*.py",  # Load Python files
             loader_cls=UnstructuredFileLoader,
             show_progress=True,
             use_multithreading=True,
