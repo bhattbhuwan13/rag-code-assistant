@@ -6,11 +6,12 @@ from langchain_community.document_loaders import (
     UnstructuredFileLoader,
 )
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import LanceDB
 from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
+import lancedb
 
 # Load environment variables
 load_dotenv()
@@ -59,12 +60,16 @@ class RAGApplication:
         )
         splits = text_splitter.split_documents(documents)
 
+        # Create LanceDB database
+        db = lancedb.connect("lancedb")
+        
         # Create vector store
         embeddings = OpenAIEmbeddings()
-        self.vector_store = Chroma.from_documents(
+        self.vector_store = LanceDB.from_documents(
             documents=splits,
             embedding=embeddings,
-            persist_directory="chroma_db"
+            connection=db,
+            table_name="documents"
         )
 
     def initialize_rag(self) -> None:
